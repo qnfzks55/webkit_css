@@ -1,2 +1,2 @@
 # webkit_css
-webkit-css 스터디 저장소
+*webkit-css 스터디 저장소*
