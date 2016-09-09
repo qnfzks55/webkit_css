@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, target-densitydpi=medium-dpi">
 <title>유리처럼 반사되는 순위 키워드 만들기</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <style>
 	.rangking{
 		height:35px;
@@ -12,6 +13,7 @@
 		font-size:16px;
 		line-height:16px;
 		font-weight:bold;
+		-webkit-box-reflect: below 1px -webkit-linear-gradient(top, transparent, transparent 30%, rgba(0, 0, 0, 0.4));
 	}
 	.key{
 		overflow:hidden;
@@ -22,6 +24,7 @@
 		padding: 9px 40px 9px 10px;
 		color: #000;
 		white-space: nowrap;
+		-webkit-animation: movein 3s ease;
 	}
 	.num{
 		display:inline-block;
@@ -84,12 +87,68 @@
 	.down{
 		background-position:50% -189px;
 	}
+
+	@-webkit-keyframes movein {
+		0% {bottom: -50px}
+		30% {bottom: 0}
+		80% {bottom: 0}
+		100% {bottom: 50px}
+	}
 </style>
 </head>
 <body>
+<script>
+	$(function(){
+		var template = "";
+		var index = 1;
+		var array = [];
+		var data = [
+			{
+				message : "바람부는 날에는 김치전에 막걸리를 먹고 싶은 이유는?",
+				change : "up"
+			},
+			{
+				message : "비가오면 생각나는 그사람",
+				change : "down"
+			},
+			{
+				message : "깔깔깔 웃으면 복이와요",
+				change : "down"
+			},
+			{
+				message : "늑대소녀",
+				change : "up"
+			},
+			{
+				message : "당신을 사랑해",
+				change : "up"
+			}
+		];
+
+		array.push('<div class="key">');
+		array.push('<span class="word rolling">');
+		array.push('<em class="num num%-RANK%">%-RANK%</em>');
+		array.push('<span class="txt">%-MESSAGE%</span>');
+		array.push('<em class="ico_rangking %-CHANGE%">순위 %-RANK_UPDOWN%</em>');
+		array.push('</span>');
+		array.push('</div>');
+		template = array.join("");
+		setInterval(function(){
+			var html = template.replace("%-RANK%", (++index) + "").replace("%-MESSAGE%", data[index].change === "up" ? "오름" : "내림");
+			$('#_box').html(html);
+			if(index === data.length - 1){
+				index = 0;
+			}
+		}, 2600);
+	});
+</script>
 	<div class="rangking" id="_box">
-		<div class="key"><span class="rolling"><em class="num num1">1</em><span class="txt">바람부는 날에는 김치전에 막걸리를 먹고 싶은 이유는??</span><em class="ico_rangking up">순위 오름</em></span></div>
+		<div class="key">
+			<span class="rolling"><em class="num num1">1</em>
+				<span class="txt">바람부는 날에는 김치전에 막걸리를 먹고 싶은 이유는??</span>
+				<em class="ico_rangking up">순위 오름</em>
+			</span>
+		</div>
 	</div>
 </body>
 </html>
-	
