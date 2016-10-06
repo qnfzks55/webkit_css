@@ -37,18 +37,26 @@
 		hr {
 			display: none !important;
 		}
+
+        .graph {display: -webkit-flex; -webkit-justify-content: space-around; -webkit-align-items: flex-end; height: 200px; border: 1px solid #000; border-bottom: 2px solid #000; border-left: 2px solid #000; background: url(img/bg_bar_graph.gif) repeat-x}
+        .bar {width: 30px; background: #ff0000; opacity: .9; text-align: center}
+        .num {font-size: 11px; color: #fff}
+        .x-axis {display: -webkit-flex; -webkit-justify-content: space-around}
+        .x-axis li {width: 30px}
+        .y-axis {display: -webkit-flex; position: absolute; top: -5px; left: 10px; height: 215px; -webkit-flex-direction: column; -webkit-justify-content: space-between}
+        .graph_area {position: relative; margin-top: 50px; padding: 0 10px 0 40px}
         </style>
     </head>
     <body>
         <div class="graph_area" >
             <ul class="graph">
-                <li class="bar"><span class="num">50</span></li>
-                <li class="bar"><span class="num">85</span></li>
-                <li class="bar"><span class="num">35</span></li>
-                <li class="bar"><span class="num">7</span></li>
-                <li class="bar"><span class="num">80</span></li>
-                <li class="bar"><span class="num">32</span></li>
-                <li class="bar"><span class="num">100</span></li>
+                <li class="bar" style="height: 50%"><span class="num">50</span></li>
+                <li class="bar" style="height: 85%"><span class="num">85</span></li>
+                <li class="bar" style="height: 35%"><span class="num">35</span></li>
+                <li class="bar" style="height: 7%"><span class="num">7</span></li>
+                <li class="bar" style="height: 80%"><span class="num">80</span></li>
+                <li class="bar" style="height: 32%"><span class="num">32</span></li>
+                <li class="bar" style="height: 100%"><span class="num">100</span></li>
             </ul>
             <ul class="x-axis">
                 <li>Sun</li>

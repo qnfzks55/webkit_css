@@ -37,14 +37,21 @@ table{
 hr{
 	display:none !important;
 }
+
+/* Layout */
+html, body, .wrap {height: 100%}
+.wrap {background: url(img/cosmos.jpg) no-repeat 50% 50%; -webkit-background-size: cover}
 /* menu */
 ul{
+	display: -webkit-box;
 	overflow:hidden;
 	border:1px solid #999;
 }
 li{
 	text-align:center;
 	border:1px solid #999;
+	-webkit-box-flex: 1;
+	background: -webkit-linear-gradient(top, #e2e2e2, #fff);
 }
 a{
 	display:block;
