@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, target-densitydpi=medium-dpi">
 <title>데이터 테이블의 소팅기능 만들기</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <style>
 /* Common */
 body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{
@@ -124,19 +125,45 @@ html,body{
 .menu_table .menu{
 	text-align:center;
 }
+
+#menu_data {display: -webkit-flex; -webkit-flex-direction: column}
 </style>
+    <script>
+        function runSort(){
+            $('.menu_data > li').each(function(){
+                var text = $(this).find('.' + 'ele').text(),
+                    lstOrder = text.replace(/\원/g, '').replace(/\분/g, '').replace(/\,/g, '');
+                    $(this).css('-webkit-order', lstOrder);
+            });
+        }
+
+        // 내림차순
+        $("#sortOpt1").click(function(){
+            $(".menu_data").css('-webkit-flex-direction','column');
+        });
+
+        // 오름차순
+        $("#sortOpt2").click(function(){
+            $(".menu_data").css('-webkit-flex-direction','column-reverse');
+        });
+
+        // 번호, 가격, 소요시간, 인기순 정렬
+        $(".num a,.prize a,.time a,.top a").click(function(){
+            runSort($(this).parents("span").attr("class"));
+        });
+    </script>
 </head>
 <body>
 <div class="floating_menu">
-    <button id="sortOpt1">내림차순</button>
-    <button id="sortOpt2">오름차순</button>
+    <button id="sortOpt1" onclick="$('#menu_data').css('-webkit-flex-direction', 'column')">내림차순</button>
+    <button id="sortOpt2" onclick="$('#menu_data').css('-webkit-flex-direction', 'column-reverse')">오름차순</button>
     <div class="menu_table">
-        <span class="num"><a href="#">번호</a></span>
+        <span class="num"><a href="#" onclick="runSort($(this).parents('span').attr('class'));">번호</a></span>
 	      <span class="category">카테고리</span>
 	      <span class="menu">메뉴명</span>
-	      <span class="prize"><a href="#">가격</a></span>
-        <span class="time"><a href="#">소요시간</a></span>
-	      <span class="top"><a href="#">인기순</a></span>
+	      <span class="prize"><a href="#" onclick="runSort($(this).parents('span').attr('class'));">가격</a></span>
+        <span class="time"><a href="#" onclick="runSort($(this).parents('span').attr('class'));">소요시간</a></span>
+	      <span class="top"><a href="#" onclick="runSort($(this).parents('span').attr('class'));">인기순</a></span>
     </div>
 </div>
 <ul class="menu_data">
